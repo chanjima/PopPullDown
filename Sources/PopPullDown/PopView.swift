@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PopView: UIView {
+internal class PopView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)

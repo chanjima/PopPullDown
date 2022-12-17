@@ -2,7 +2,7 @@ import UIKit
 
 //  MARK: - PopPullDown
 
-class PopPullDown: NSObject {
+open class PopPullDown: NSObject {
     
     // popoverで表示するview
     private let view: UIView?
@@ -17,7 +17,7 @@ class PopPullDown: NSObject {
 
     // MARK: - Initalize
     
-    init(sender: UIButton, direction: UIPopoverArrowDirection) {
+    public init(sender: UIButton, direction: UIPopoverArrowDirection) {
         self.sender = sender
         self.direction = direction
         self.view = PopView()
@@ -80,7 +80,7 @@ extension PopPullDown {
 
 extension PopPullDown: UIPopoverPresentationControllerDelegate {
     
-    func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
+    public func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
         return .none
     }
 }
