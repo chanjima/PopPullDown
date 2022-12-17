@@ -1,28 +1,45 @@
 import UIKit
 
-class PopPullDown: UIButton {
+//  MARK: - PopPullDown
 
-    required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)!
-        self.setupDegign()
+class PopPullDown: NSObject {
+    
+    private let sender: UIButton?
+    private let viewController: UIViewController?
+    private let direction: UIPopoverArrowDirection?
+
+    init(_ sender: UIButton, direction: UIPopoverArrowDirection) {
+        self.sender = sender
+        self.direction = direction
+        self.viewController = UIViewController()
+        super.init()
+
+        self.setup()
     }
-
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        self.setupDegign()
-    }
-
+    
 }
 
 // MARK: - Private
 
 extension PopPullDown {
 
-    private func setupDegign() {
-        self.backgroundColor = .lightGray.withAlphaComponent(0.5)
-        self.setTitleColor(.label, for: .normal)
-        self.layer.cornerRadius = 10
-        self.layer.borderColor = UIColor.label.cgColor
-        self.layer.borderWidth = 1.0
+    private func setup() {
+        guard let sender = self.sender, let viewController = self.viewController, let direction = self.direction else { return }
+
+        viewController.modalPresentationStyle = .popover
+        viewController.popoverPresentationController?.sourceView = sender.superview
+        viewController.popoverPresentationController?.sourceRect = sender.frame
+        viewController.popoverPresentationController?.permittedArrowDirections = direction
+        viewController.popoverPresentationController?.delegate = self
     }
 }
+
+// MARK: - UIPopoverPresentationControllerDelegate
+
+extension PopPullDown: UIPopoverPresentationControllerDelegate {
+    
+    func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
+        return .none
+    }
+}
+
