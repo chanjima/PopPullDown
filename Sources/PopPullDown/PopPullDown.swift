@@ -25,7 +25,11 @@ open class PopPullDown: NSObject {
         super.init()
         self.setup()
     }
-    
+
+    open func present() {
+        guard let viewController = self.viewController else { return }
+        self.getTopViewzController()?.present(viewController, animated: true)
+    }
 }
 
 // MARK: - Private
@@ -54,8 +58,6 @@ extension PopPullDown {
         presentationController.sourceRect = sender.frame
         presentationController.permittedArrowDirections = direction
         presentationController.delegate = self
-
-        self.getTopViewzController()?.present(viewController, animated: true)
     }
     
     private func getTopViewzController() -> UIViewController? {
