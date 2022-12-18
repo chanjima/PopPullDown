@@ -9,9 +9,11 @@ open class PopPullDown: NSObject {
     // popoverの矢印の方向
     private let direction: UIPopoverArrowDirection?
     // popoverで利用するviewController
-    private let viewController: UIViewController?
+    private let viewController: PopView?
     // popoverの高さ
     private var popoberHeight: Int?
+    
+    open var items: [String] = []
 
     // MARK: - Initalize
     
@@ -25,6 +27,8 @@ open class PopPullDown: NSObject {
 
     open func present() {
         guard let viewController = self.viewController else { return }
+        viewController.popviewDelegate?.popView(self.items)
+
         self.getTopViewzController()?.present(viewController, animated: true)
     }
 }

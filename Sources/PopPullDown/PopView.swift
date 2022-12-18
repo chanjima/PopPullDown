@@ -7,12 +7,32 @@
 
 import UIKit
 
+// MARK: - Protocols
+
+public protocol PopViewDelegate {
+    
+    /// 表示する項目
+    func popView(_ items: [String])
+}
+
 // MARK: - PopView
+
 internal class PopView: UIViewController {
     
-    private let items = ["TEST1", "TEST2", "TEST3"]
-    private var tableView: UITableView?
+    open var popviewDelegate: PopViewDelegate?
 
+    private var tableView: UITableView?
+    private var items: [String] = []
+
+    init() {
+        super.init(nibName: nil, bundle: nil)
+        self.popviewDelegate = self
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -56,5 +76,13 @@ extension PopView: UITableViewDelegate {
         cell.textLabel!.text = "\(self.items[indexPath.row])"
         
         return cell
+    }
+}
+
+extension PopView: PopViewDelegate {
+    
+    func popView(_ items: [String]) {
+        self.items = items
+        self.tableView?.reloadData()
     }
 }
