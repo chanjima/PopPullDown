@@ -1,6 +1,5 @@
 # PopPullDown
 
-![WIP](https://img.shields.io/badge/WIP-30Percent-red)
 ![Version](https://img.shields.io/badge/Version-0.0-important)
 [![Xcode](https://img.shields.io/badge/Xcode-14.1-blue.svg)](https://developer.apple.com/xcode) 
 [![Swift 5.7.1](https://img.shields.io/badge/Swift-5.7.1-blue.svg?style=flat)](https://swift.org/)
@@ -9,6 +8,6 @@
 
 PopPullDown in Swift
 
-## Warning
+## Caution
 
-⚠️This package is a work in progress⚠️
+⚠️This package is in final coordination⚠️
