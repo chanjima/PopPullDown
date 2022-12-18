@@ -11,14 +11,15 @@ open class PopPullDown: NSObject {
     // popoverで利用するviewController
     private let viewController: PopView?
     // popoverのサイズ
-    open var bounds: CGSize = CGSize()
+    private var bounds: CGSize = CGSize()
     // popoverの表示項目
     open var items: [String] = []
 
     // MARK: - Initalize
     
-    public init(sender: UIButton, direction: UIPopoverArrowDirection) {
+    public init(sender: UIButton, bounds: CGSize, direction: UIPopoverArrowDirection) {
         self.sender = sender
+        self.bounds = bounds
         self.direction = direction
         self.viewController = PopView()
         super.init()
@@ -43,7 +44,7 @@ extension PopPullDown {
         guard let viewController = self.viewController else { return }
         
         viewController.modalPresentationStyle = .popover
-        //viewController.view.frame = CGRect(x: .zero, y: .zero, width: self.bounds.width, height: self.bounds.height)
+        viewController.preferredContentSize = self.bounds
 
         guard let presentationController = viewController.popoverPresentationController else { return }
 
