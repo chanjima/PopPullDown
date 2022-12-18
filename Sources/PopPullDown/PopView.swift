@@ -7,7 +7,8 @@
 
 import UIKit
 
-internal class PopView: UIViewController, UITableViewDelegate, UITableViewDataSource {
+// MARK: - PopView
+internal class PopView: UIViewController {
     
     private let items = ["TEST1", "TEST2", "TEST3"]
     private var tableView: UITableView?
@@ -25,25 +26,35 @@ internal class PopView: UIViewController, UITableViewDelegate, UITableViewDataSo
 
         self.view.addSubview(self.tableView ?? UIView())
     }
+}
 
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("Num: \(indexPath.row)")
-        print("Value: \(items[indexPath.row])")
-    }
+// MARK: - Private
 
+extension PopView {
+}
+
+
+// MARK: - UITableViewDataSource
+
+extension PopView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.items.count
+    }
+    
+}
+
+// MARK: - UITableViewDelegate
+
+extension PopView: UITableViewDelegate {
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MyCell", for: indexPath as IndexPath)
         cell.textLabel!.text = "\(self.items[indexPath.row])"
-
+        
         return cell
     }
-
-}
-
-extension PopView {
-
 }
