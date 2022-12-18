@@ -12,7 +12,10 @@ import UIKit
 public protocol PopViewDelegate {
     
     /// 表示する項目
-    func popView(_ items: [String])
+    func popView(items: [String])
+
+    /// サイズ
+    func popView(bounds: CGSize)
 }
 
 // MARK: - PopView
@@ -23,6 +26,7 @@ internal class PopView: UIViewController {
 
     private var tableView: UITableView?
     private var items: [String] = []
+    private var bounds: CGSize = CGSize()
 
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -36,10 +40,7 @@ internal class PopView: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let displayWidth: CGFloat = self.view.frame.width
-        let displayHeight: CGFloat = self.view.frame.height
-
-        self.tableView = UITableView(frame: CGRect(x: .zero, y: .zero, width: displayWidth, height: displayHeight))
+        self.tableView = UITableView(frame: CGRect(x: .zero, y: .zero, width: self.bounds.width, height:self.bounds.height))
         self.tableView?.register(UITableViewCell.self, forCellReuseIdentifier: "MyCell")
         self.tableView?.dataSource = self
         self.tableView?.delegate = self
@@ -80,9 +81,13 @@ extension PopView: UITableViewDelegate {
 }
 
 extension PopView: PopViewDelegate {
-    
-    func popView(_ items: [String]) {
+
+    func popView(items: [String]) {
         self.items = items
         self.tableView?.reloadData()
+    }
+
+    func popView(bounds: CGSize) {
+        self.bounds = bounds
     }
 }
