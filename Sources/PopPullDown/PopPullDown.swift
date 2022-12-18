@@ -23,8 +23,6 @@ open class PopPullDown: NSObject {
     private let direction: UIPopoverArrowDirection?
     // popoverで利用するviewController
     private let viewController: PopView?
-    // popoverのサイズ
-    open var bounds: CGSize = CGSize()
     // popoverの表示項目
     open var items: [String] = []
 
@@ -55,7 +53,7 @@ extension PopPullDown {
         guard let viewController = self.viewController else { return }
         
         viewController.modalPresentationStyle = .popover
-        viewController.preferredContentSize = self.bounds
+        viewController.preferredContentSize = CGSize(width: viewController.view.bounds.width, height: 300)
 
         guard let presentationController = viewController.popoverPresentationController else { return }
 

@@ -37,7 +37,7 @@ internal class PopView: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.tableView = UITableView(frame: CGRect(x: .zero, y: .zero, width: self.view.frame.width, height: self.view.frame.height))
+        self.tableView = UITableView(frame: CGRect(x: .zero, y: .zero, width: self.view.frame.width, height: 300))
         self.tableView?.register(UITableViewCell.self, forCellReuseIdentifier: "MyCell")
         self.tableView?.dataSource = self
         self.tableView?.delegate = self
