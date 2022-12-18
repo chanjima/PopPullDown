@@ -33,7 +33,6 @@ open class PopPullDown: NSObject {
     public init(sender: UIButton, direction: UIPopoverArrowDirection) {
         self.sender = sender
         self.direction = direction
-        self.popPullDownDelegate = sender.superview as? PopPullDownDelegate
         self.viewController = PopView()
     }
 
@@ -41,6 +40,7 @@ open class PopPullDown: NSObject {
         self.setup()
         guard let viewController = self.viewController, let topViewController = self.getTopViewzController() else { return }
 
+        viewController.popPullDownDelegate = self.popPullDownDelegate
         viewController.popviewDelegate?.popView(items: self.items)
         topViewController.present(viewController, animated: true)
     }
