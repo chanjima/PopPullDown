@@ -59,7 +59,9 @@ extension PopPullDown {
 
         presentationController.sourceView = sender.superview
         presentationController.sourceRect = sender.frame
-        presentationController.permittedArrowDirections = direction
+
+        let position = viewController.view.frame.height - ((sender.frame.maxY + sender.frame.height) / 1.5)
+        presentationController.permittedArrowDirections = position <= 300 ? .down : direction
         presentationController.delegate = self
     }
     
