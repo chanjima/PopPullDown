@@ -20,6 +20,8 @@ public protocol PopViewDelegate {
 internal class PopView: UIViewController {
     
     open var popviewDelegate: PopViewDelegate?
+    
+    private var output: PopPullDownDelegate?
 
     private var tableView: UITableView?
     private var items: [String] = []
@@ -66,6 +68,7 @@ extension PopView: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        output?.selectedIndex(items[indexPath.row])
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

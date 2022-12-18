@@ -7,10 +7,16 @@
 
 import UIKit
 
+public protocol PopPullDownDelegate {
+
+    func selectedIndex(_ item: String)
+}
+
 //  MARK: - PopPullDown
 
 open class PopPullDown: NSObject {
     
+    open var popPullDownDelegate: PopPullDownDelegate?
     // popoverを表示させるボタン
     private let sender: UIButton?
     // popoverの矢印の方向
@@ -27,6 +33,7 @@ open class PopPullDown: NSObject {
     public init(sender: UIButton, direction: UIPopoverArrowDirection) {
         self.sender = sender
         self.direction = direction
+        self.popPullDownDelegate = sender.superview as? PopPullDownDelegate
         self.viewController = PopView()
     }
 
@@ -84,4 +91,3 @@ extension PopPullDown: UIPopoverPresentationControllerDelegate {
         return .none
     }
 }
-
