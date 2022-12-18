@@ -29,7 +29,6 @@ open class PopPullDown: NSObject {
     open func present() {
         guard let viewController = self.viewController, let topViewController = self.getTopViewzController() else { return }
 
-        viewController.popviewDelegate?.popView(bounds: self.bounds)
         viewController.popviewDelegate?.popView(items: self.items)
         topViewController.present(viewController, animated: true)
     }
