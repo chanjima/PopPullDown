@@ -11,22 +11,20 @@ open class PopPullDown: NSObject {
     // popoverで利用するviewController
     private let viewController: PopView?
     // popoverのサイズ
-    private var bounds: CGSize = CGSize()
+    open var bounds: CGSize = CGSize()
     // popoverの表示項目
     open var items: [String] = []
 
     // MARK: - Initalize
     
-    public init(sender: UIButton, bounds: CGSize, direction: UIPopoverArrowDirection) {
+    public init(sender: UIButton, direction: UIPopoverArrowDirection) {
         self.sender = sender
-        self.bounds = bounds
         self.direction = direction
         self.viewController = PopView()
-        super.init()
-        self.setup()
     }
 
     open func present() {
+        self.setup()
         guard let viewController = self.viewController, let topViewController = self.getTopViewzController() else { return }
 
         viewController.popviewDelegate?.popView(items: self.items)
