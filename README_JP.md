@@ -10,6 +10,8 @@ PopPullDown in Swift
 
 利用する場合は自己責任でお願いします。
 
+[English](URL "https://github.com/chanjima/PopPullDown/blob/main/README.md")
+
 ## サンプル
 ![usage](https://user-images.githubusercontent.com/120774845/208463212-780de7c1-3057-4ad5-827e-134df7a15ec0.gif)
 
