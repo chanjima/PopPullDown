@@ -34,6 +34,12 @@ open class PopPullDown: NSObject {
         self.viewController = PopView()
     }
 
+    public init(sender: UIBarButtonItem, direction: UIPopoverArrowDirection) {
+        self.sender = sender.customView as? UIButton
+        self.direction = direction
+        self.viewController = PopView()
+    }
+
     open func present() {
         self.setup()
         guard let viewController = self.viewController, let topViewController = self.getTopViewzController() else { return }
